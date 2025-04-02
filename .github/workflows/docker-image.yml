@@ -1,0 +1,47 @@
+name:  Docker Image CI XT_VOX_AI
+
+on:
+  push:
+    branches: [ "main1" ]
+  pull_request:
+    branches: [ "main1" ]
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out the code
+        uses: actions/checkout@v4
+        
+      - name: Set the build number
+        run: echo "BUILD_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
+        
+      - name: Build the Docker image
+        run: docker build -t adminxyloite/xt_vox_ui:${{ env.BUILD_NUMBER }} .
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u adminxyloite --password-stdin
+
+      - name: Push the Docker image
+        run: docker push adminxyloite/xt_vox_ui:${{ env.BUILD_NUMBER }}
+
+      # Check out the code
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      # Set the build number
+      - name: Set the build number
+        run: echo "BUILD_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
+
+      # Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # Build the Docker image
+      - name: Build the Docker image
+        run: docker build -t ghcr.io/xyloite-dev/xt_vox_python:${{ env.BUILD_NUMBER }} . --no-cache
+
+      # Push the Docker image to GitHub Container Registry
+      - name: Push the Docker image
+        run: docker push ghcr.io/xyloite-dev/xt_vox_python:${{ env.BUILD_NUMBER }}
