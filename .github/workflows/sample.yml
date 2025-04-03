@@ -1,22 +1,14 @@
-name: Docker images CI for GHCR
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  Build_and_Publish:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.GH_PAT }}" | docker login ghcr.io -u 187654322 --password-stdin
-
-      - name: Build and push the Docker image
-        run: |
-          docker build . --tag ghcr.io/187654322/samplerep:latest
-          docker push ghcr.io/187654322/samplerep:latest
+            - name: Push Docker Image
+  # You may pin to the exact commit or the version.
+  # uses: julioarruda/pushimagetoregistry@3679a680bb9d6cbf3c1de8aeed592faf1e140c8b
+  uses: julioarruda/pushimagetoregistry@v1
+  with:
+    # Username Name with push permission
+    acr-tokenname: 
+    # Token/PWD with push permission
+    acr-token: 
+    # Docker Account Name
+    acr-account: 
+    # Docker Image Name
+    acr-imagename: 
+          
