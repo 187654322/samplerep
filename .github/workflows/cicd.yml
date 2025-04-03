@@ -1,0 +1,20 @@
+            - name: GHCR Push: Build and push Docker image
+  # You may pin to the exact commit or the version.
+  # uses: Its4Nik/NGX-action@cabcff73710cbf23d6f6adfc2c9365447ce11b3f
+  uses: Its4Nik/NGX-action@3.1
+  with:
+    # Token such as GITHUB_TOKEN that has `write:packages` scope to authenticate against GCHR.
+    github-push-secret: 
+    # Docker Image name
+    docker-image-name: # optional
+    # Docker Image tag
+    docker-image-tag: # optional, default is latest
+    # Dockerfile path and name
+    dockerfile-path: # optional, default is Dockerfile
+    # Path to the build context
+    build-context: # optional, default is .
+    # If 'true', skip pushing the image
+    build-only: # optional, default is false
+    # Comma-separated list of build arguments. Must be of the format KEY=VALUE,KEY=VALUE
+    docker-build-args: # optional, default is 
+          
