@@ -1,5 +1,4 @@
 name: samplerep
-on: 
 push: ["container Repository]"
 branches: [ "main1"] 
 pull_request: 
