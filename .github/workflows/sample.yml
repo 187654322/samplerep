@@ -1,12 +1,12 @@
-name: Docker Image CI XT_VOX_AI 
-push: ["container Repository]"
-branches: [ "main1"] 
-pull_request: 
-branches: [ "main1"] 
-jobs: 
-build-and-push: 
-runs-on: ubuntu-latest 
-steps: 
-
-name: Push the Docker image 
-run: docker push ghcr.io/xyloite-dev/xt_vox_python:${{ env.BUILD_NUMBER }}
+            - name: Pull Request Package Labeler
+  # You may pin to the exact commit or the version.
+  # uses: csi-lk/package-labeler@9d0690f14094b67545af97aeb3d1140e6ba1283a
+  uses: csi-lk/package-labeler@v1.0.1
+  with:
+    # The GITHUB_TOKEN secret
+    repo-token: # optional
+    # What subfolder should the script run within
+    workspace: # optional, default is packages
+    # The prefix to use for the labels
+    prefix: # optional, default is pkg: 
+          
