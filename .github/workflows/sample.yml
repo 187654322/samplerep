@@ -1,4 +1,4 @@
-name: samplerep
+name: Docker Image CI XT_VOX_AI 
 push: ["container Repository]"
 branches: [ "main1"] 
 pull_request: 
